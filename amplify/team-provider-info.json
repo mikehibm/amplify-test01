@@ -10,6 +10,14 @@
             "StackName": "amplify-amplify-test1-dev-182018",
             "StackId": "arn:aws:cloudformation:us-west-2:067416549514:stack/amplify-amplify-test1-dev-182018/97740b70-7f99-11ea-9d57-0a73b7e234e0",
             "AmplifyAppId": "djeo4yyijn583"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "djeo4yyijn583",
+                    "type": "cicd"
+                }
+            }
         }
     }
 }
