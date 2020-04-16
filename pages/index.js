@@ -1,9 +1,10 @@
-import { MyLayout } from "../components/MyLayout";
+import { MyLayout } from '../components/MyLayout';
+import { TodoApp } from '../components/TodoApp';
 
 export default () => {
   return (
     <MyLayout>
-      <h1>Hello!</h1>
+      <TodoApp />
     </MyLayout>
   );
 };

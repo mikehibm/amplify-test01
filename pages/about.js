@@ -1,9 +1,9 @@
-import { MyLayout } from "../components/MyLayout";
+import { MyLayout } from '../components/MyLayout';
 
 export default () => {
   return (
     <MyLayout>
-      <h1>Aboutページです</h1>
+      <h2>Aboutページです</h2>
     </MyLayout>
   );
 };
