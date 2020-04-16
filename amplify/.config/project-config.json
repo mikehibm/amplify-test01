@@ -1,0 +1,17 @@
+{
+    "projectName": "amplify-test1",
+    "version": "3.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": ".",
+            "DistributionDir": "out",
+            "BuildCommand": "npm run export",
+            "StartCommand": "npm run-script start"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}
