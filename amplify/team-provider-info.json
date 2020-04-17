@@ -17,6 +17,9 @@
                     "appId": "djeo4yyijn583",
                     "type": "cicd"
                 }
+            },
+            "auth": {
+                "amplifytest01": {}
             }
         }
     }

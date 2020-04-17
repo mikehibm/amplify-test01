@@ -1,11 +1,23 @@
 import { Header } from './Header';
 import { Footer } from './Footer';
 
-export const MyLayout = ({ children }) => {
+const styleMain = {
+  minHeight: '50vh',
+  padding: '0.6em',
+};
+
+export const MyLayout = ({ contentStyle = {}, children }) => {
+  const style = {
+    ...styleMain,
+    ...contentStyle,
+  };
+
   return (
     <div>
       <Header />
-      <div className="main">{children}</div>
+      <div className="main" style={style}>
+        {children}
+      </div>
       <Footer />
 
       <style jsx global>{`
@@ -26,11 +38,6 @@ export const MyLayout = ({ children }) => {
         h5 {
           margin: 0;
           padding: 0;
-        }
-
-        .main {
-          min-height: 50vh;
-          padding: 0.5em;
         }
       `}</style>
     </div>

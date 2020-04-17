@@ -13,6 +13,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@aws-amplify/ui-react": "0.2.3",
+    "aws-amplify": "3.0.8",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
