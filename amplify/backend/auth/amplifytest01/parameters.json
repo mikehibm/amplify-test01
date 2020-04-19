@@ -1,4 +1,6 @@
 {
+    "identityPoolName": "amplifytest01_identitypool_fb97503c",
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "amplif6a20cf9a",
     "userPoolName": "amplifytest01pool",
     "autoVerifiedAttributes": [
@@ -32,7 +34,7 @@
     "userpoolClientLambdaRole": "amplif6a20cf9a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "useDefault": "manual",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "resourceName": "amplifytest01",
     "userPoolGroups": false,
     "adminQueries": false,
