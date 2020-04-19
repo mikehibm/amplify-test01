@@ -1,15 +1,19 @@
+import { updateTodo, deleteTodo } from '../services/todo-service';
+
 export const TodoItem = ({ item, dispatch }) => {
   function handleCheck(e) {
     console.log(e);
-    dispatch({
-      type: 'updateDone',
-      payload: { ...item, done: e.currentTarget.checked },
-    });
+    // dispatch({
+    //   type: 'update',
+    //   payload: { ...item, done: e.currentTarget.checked },
+    // });
+    updateTodo(dispatch, { ...item, done: e.currentTarget.checked });
   }
 
   function handleDelete(e) {
     console.log({ e });
-    dispatch({ type: 'delete', payload: { ...item } });
+    // dispatch({ type: 'delete', payload: { ...item } });
+    deleteTodo(dispatch, item);
   }
 
   return (

@@ -1,14 +1,14 @@
 export const initialState = {
   todos: [
-    { owner: 'a123', id: '1', text: 'これはテストです', done: false },
-    { owner: 'a123', id: '2', text: 'ミルクを買う', done: false },
-    { owner: 'a123', id: '3', text: 'ジョギング10km', done: false },
-    {
-      owner: 'a123',
-      id: '4',
-      text: 'ブログ用サンプルアプリケーション作成',
-      done: false,
-    },
+    // { owner: 'a123', id: '1', text: 'これはテストです', done: false },
+    // { owner: 'a123', id: '2', text: 'ミルクを買う', done: false },
+    // { owner: 'a123', id: '3', text: 'ジョギング10km', done: false },
+    // {
+    //   owner: 'a123',
+    //   id: '4',
+    //   text: 'ブログ用サンプルアプリケーション作成',
+    //   done: false,
+    // },
   ],
   loading: false,
   error: null,
@@ -16,9 +16,17 @@ export const initialState = {
 
 export function todoReducer(state, action) {
   switch (action.type) {
+    case 'beginAsync':
+      return { ...state, loading: true, error: null };
+    case 'endAsync':
+      return { ...state, loading: false, error: null };
+    case 'error':
+      return { ...state, loading: false, error: action.payload };
+    case 'loadTodos':
+      return { ...state, loading: false, todos: action.payload, error: null };
     case 'add':
       return add(state, action.payload);
-    case 'updateDone':
+    case 'update':
       return update(state, action.payload);
     case 'delete':
       return destroy(state, action.payload);
@@ -37,6 +45,7 @@ function add(state, text) {
 
   return {
     ...state,
+    loading: false,
     todos: [...state.todos, item],
   };
 }
@@ -55,6 +64,7 @@ function update(state, item) {
 
   return {
     ...state,
+    loading: false,
     todos: newTodos,
   };
 }
@@ -64,6 +74,7 @@ function destroy(state, item) {
 
   return {
     ...state,
+    loading: false,
     todos: newTodos,
   };
 }

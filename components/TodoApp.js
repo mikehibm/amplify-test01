@@ -1,7 +1,8 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { TodoInput } from './TodoInput';
 import { TodoItem } from './TodoItem';
 import { initialState, todoReducer } from '../services/todo-reducer';
+import { loadTodos } from '../services/todo-service';
 import { useAuthListner } from './UseAuthLisner';
 
 export const TodoApp = () => {
@@ -9,6 +10,16 @@ export const TodoApp = () => {
 
   const user = useAuthListner();
   const username = user?.username || '';
+
+  let isMounted = true;
+
+  useEffect(() => {
+    if (!isMounted) return;
+    loadTodos(dispatch, username);
+    return () => {
+      isMounted = false;
+    };
+  }, [username]);
 
   return (
     <div className="todoapp">
@@ -19,6 +30,7 @@ export const TodoApp = () => {
           <TodoItem key={i.id} item={i} dispatch={dispatch} />
         ))}
       </ul>
+      {state.loading && <div>Loading...</div>}
       <style jsx>{`
         .todoapp {
           max-width: 600px;

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { addTodo } from '../services/todo-service';
 
 export const TodoInput = ({ dispatch }) => {
   const [text, setText] = useState('');
@@ -16,7 +17,8 @@ export const TodoInput = ({ dispatch }) => {
 
   function handleAdd(e) {
     console.log(e);
-    dispatch({ type: 'add', payload: text });
+    // dispatch({ type: 'add', payload: text });
+    addTodo(dispatch, text);
     setText('');
     inputRef.current && inputRef.current.focus();
   }
