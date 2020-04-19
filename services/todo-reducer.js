@@ -3,12 +3,6 @@ export const initialState = {
     // { owner: 'a123', id: '1', text: 'これはテストです', done: false },
     // { owner: 'a123', id: '2', text: 'ミルクを買う', done: false },
     // { owner: 'a123', id: '3', text: 'ジョギング10km', done: false },
-    // {
-    //   owner: 'a123',
-    //   id: '4',
-    //   text: 'ブログ用サンプルアプリケーション作成',
-    //   done: false,
-    // },
   ],
   loading: false,
   error: null,

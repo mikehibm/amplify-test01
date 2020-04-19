@@ -11,14 +11,11 @@ export const TodoApp = () => {
   const user = useAuthListner();
   const username = user?.username || '';
 
-  let isMounted = true;
-
   useEffect(() => {
+    let isMounted = true;
     if (!isMounted) return;
-    loadTodos(dispatch, username);
-    return () => {
-      isMounted = false;
-    };
+    loadTodos(dispatch);
+    return () => (isMounted = false);
   }, [username]);
 
   return (
@@ -30,7 +27,14 @@ export const TodoApp = () => {
           <TodoItem key={i.id} item={i} dispatch={dispatch} />
         ))}
       </ul>
-      {state.loading && <div>Loading...</div>}
+      {state.loading && <div className="loading">Loading...</div>}
+      {state.error && (
+        <div className="error">
+          <h4>Error</h4>
+          <p>{state.error.message}</p>
+          {/* <pre>{JSON.stringify(state.error, null, 2)}</pre> */}
+        </div>
+      )}
       <style jsx>{`
         .todoapp {
           max-width: 600px;
@@ -40,6 +44,15 @@ export const TodoApp = () => {
 
         .list {
           padding-left: 0;
+          text-align: left;
+        }
+
+        .loading {
+          color: gray;
+        }
+
+        .error {
+          color: red;
           text-align: left;
         }
       `}</style>
