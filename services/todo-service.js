@@ -12,14 +12,6 @@ const defaultOptions = {
   // },
 };
 
-// async function getData() {
-//   const options = {
-//     ...defaultOptions,
-//   };
-
-//   return await API.get(apiName, apiPath, options);
-// }
-
 export async function loadTodos(dispatch) {
   dispatch({ type: 'beginAsync' });
 
@@ -60,10 +52,8 @@ export async function addTodo(dispatch, text) {
     const options = {
       ...defaultOptions,
       body: {
-        data: {
-          text,
-          done: false,
-        },
+        text,
+        done: false,
       },
     };
     const res = await API.post(apiName, path, options);
@@ -91,10 +81,8 @@ export async function updateTodo(dispatch, todo) {
     const options = {
       ...defaultOptions,
       body: {
-        data: {
-          text: todo.text,
-          done: todo.done,
-        },
+        text: todo.text,
+        done: todo.done,
       },
     };
     const res = await API.put(apiName, path, options);

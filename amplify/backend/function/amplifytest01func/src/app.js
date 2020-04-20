@@ -90,8 +90,8 @@ const mapTodoModelToDb = (req) => {
     pk,
     sk,
     data: {
-      text: req.body.data.text + '',
-      done: !!req.body.data.done,
+      text: req.body.text + '',
+      done: !!req.body.done,
     },
   };
 };
