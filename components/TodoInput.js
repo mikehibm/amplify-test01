@@ -40,11 +40,8 @@ export const TodoInput = ({ dispatch }) => {
         .todoinput {
           display: grid;
           grid-template-columns: 1fr auto;
+          column-gap: 0.4rem;
           padding: 0.4em;
-           {
-            /* border: 1px solid #ccc;
-          border-radius: 0.4em; */
-          }
         }
 
         input,

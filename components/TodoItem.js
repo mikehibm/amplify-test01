@@ -17,6 +17,10 @@ export const TodoItem = ({ item, dispatch }) => {
 
       <style jsx>{`
         li {
+          position: relative;
+          display: grid;
+          grid-template-columns: auto 1fr auto;
+          column-gap: 0.4rem;
           margin-left: 0;
           margin-bottom: 0.6em;
           list-style: none;
@@ -27,6 +31,20 @@ export const TodoItem = ({ item, dispatch }) => {
         li.done span {
           color: #aaa;
           text-decoration: line-through;
+        }
+
+        input[type='checkbox'] {
+          position: relative;
+          top: 0.3rem;
+          cursor: pointer;
+        }
+
+        button {
+          max-height: 1.8rem;
+          color: #444;
+          font-size: 1.2rem;
+          border-radius: 0.3em;
+          cursor: pointer;
         }
       `}</style>
     </li>
