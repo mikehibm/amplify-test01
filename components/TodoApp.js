@@ -27,7 +27,11 @@ export const TodoApp = () => {
           <TodoItem key={i.id} item={i} dispatch={dispatch} />
         ))}
       </ul>
-      {state.loading && <div className="loading">Loading...</div>}
+      {state.loading && (
+        <div className="loading">
+          <img src="/spinner.svg" className="spinner" />
+        </div>
+      )}
       {state.error && (
         <div className="error">
           <h4>Error</h4>
@@ -48,7 +52,21 @@ export const TodoApp = () => {
         }
 
         .loading {
-          color: gray;
+          position: absolute;
+          width: 100vw;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          display: grid;
+          grid-template-columns: 1fr;
+          align-items: center;
+          justify-items: center;
+          background-color: rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+        }
+
+        .spinner {
+          transform: translateY(-10%);
         }
 
         .error {
