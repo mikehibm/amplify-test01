@@ -1,12 +1,23 @@
+import { useState } from 'react';
 import { updateTodo, deleteTodo } from '../services/todo-service';
+import { ConfirmDialog } from './ConfirmDialog';
 
 export const TodoItem = ({ item, dispatch }) => {
+  const [deleteConfirm, setDeleteCongirm] = useState(false);
+
   function handleCheck(e) {
     updateTodo(dispatch, { ...item, done: e.currentTarget.checked });
   }
 
   function handleDelete(e) {
-    deleteTodo(dispatch, item);
+    setDeleteCongirm(true);
+  }
+
+  function handleDeleteCongirm(result) {
+    if (result) {
+      deleteTodo(dispatch, item);
+    }
+    setDeleteCongirm(false);
   }
 
   return (
@@ -14,6 +25,11 @@ export const TodoItem = ({ item, dispatch }) => {
       <input type="checkbox" checked={item.done} onChange={handleCheck} />
       <span>{item.text}</span>
       <button onClick={handleDelete}>X</button>
+      <ConfirmDialog
+        show={deleteConfirm}
+        message="削除しますか？"
+        onClick={handleDeleteCongirm}
+      />
 
       <style jsx>{`
         li {
@@ -23,6 +39,8 @@ export const TodoItem = ({ item, dispatch }) => {
           column-gap: 0.4rem;
           margin-left: 0;
           margin-bottom: 0.6em;
+          max-width: 100vw;
+          overflow: scroll;
           list-style: none;
           border-bottom: 1px dashed #aaa;
           font-size: 1.2rem;

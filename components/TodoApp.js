@@ -31,7 +31,7 @@ export const TodoApp = () => {
           <TodoItem key={i.id} item={i} dispatch={dispatch} />
         ))}
       </ul>
-      <LoadingSpinner isLoading={loading} />>
+      <LoadingSpinner isLoading={loading} />
       {error && (
         <div className="error">
           <h4>Error</h4>
