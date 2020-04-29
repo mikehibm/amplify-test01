@@ -2,13 +2,14 @@ import { useEffect, useReducer } from 'react';
 import { TodoInput } from './TodoInput';
 import { TodoItem } from './TodoItem';
 import { LoadingSpinner } from './LoadingSpinner';
+import { AlertDialog } from './AlertDialog';
 import { initialState, todoReducer } from '../services/todo-reducer';
 import { loadTodos } from '../services/todo-service';
 import { useAuthListner } from './UseAuthLisner';
 
 export const TodoApp = () => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const { todos, loading, error } = state;
+  const { todos, loading, error, message } = state;
 
   const user = useAuthListner();
   const username = user?.username || '';
@@ -32,6 +33,12 @@ export const TodoApp = () => {
         ))}
       </ul>
       <LoadingSpinner isLoading={loading} />
+      <AlertDialog
+        show={message}
+        message={message}
+        onClose={() => dispatch({ type: 'message', payload: null })}
+      />
+
       {error && (
         <div className="error">
           <h4>Error</h4>

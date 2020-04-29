@@ -36,9 +36,12 @@ export const ConfirmDialog = ({ show, message, onClick }) => {
           grid-template-columns: 1fr 1fr;
           column-gap: 1rem;
           grid-row-gap: 1rem;
-          min-width: 60vw;
+          width: 60vw;
+          min-width: 290px;
+          max-width: 600px;
           margin: auto auto;
           padding: 1rem;
+          border: 0.2rem solid #888;
           border-radius: 0.5rem;
           background-color: white;
           color: #666;
@@ -57,6 +60,7 @@ export const ConfirmDialog = ({ show, message, onClick }) => {
           background-color: #ddd;
           border: 2px solid #666;
           border-radius: 0.4rem;
+          cursor: pointer;
         }
 
         button:hover {

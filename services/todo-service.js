@@ -12,13 +12,12 @@ const defaultOptions = {
   // },
 };
 
-export async function loadTodos(dispatch) {
+export async function loadTodos(dispatch, message) {
   dispatch({ type: 'beginAsync' });
 
   const user = await Auth.currentUserInfo();
-  console.log({ user });
   if (!user) {
-    dispatch({ type: 'loadTodos', payload: [] });
+    dispatch({ type: 'loadTodos', payload: { todos: [] } });
     return;
   }
 
@@ -28,9 +27,7 @@ export async function loadTodos(dispatch) {
     const res = await API.get(apiName, path, defaultOptions);
     const todos = res.data;
     console.log(res);
-
-    console.log({ todos });
-    dispatch({ type: 'loadTodos', payload: todos });
+    dispatch({ type: 'loadTodos', payload: { todos, message } });
   } catch (error) {
     console.error(error);
     dispatch({ type: 'error', payload: error });
@@ -41,9 +38,8 @@ export async function addTodo(dispatch, text) {
   dispatch({ type: 'beginAsync' });
 
   const user = await Auth.currentUserInfo();
-  console.log({ user });
   if (!user) {
-    dispatch({ type: 'loadTodos', payload: [] });
+    dispatch({ type: 'loadTodos', payload: { todos: [] } });
     return;
   }
 
@@ -69,9 +65,8 @@ export async function updateTodo(dispatch, todo) {
   dispatch({ type: 'beginAsync' });
 
   const user = await Auth.currentUserInfo();
-  console.log({ user });
   if (!user) {
-    dispatch({ type: 'loadTodos', payload: [] });
+    dispatch({ type: 'loadTodos', payload: { todos: [] } });
     return;
   }
 
@@ -98,9 +93,8 @@ export async function deleteTodo(dispatch, todo) {
   dispatch({ type: 'beginAsync' });
 
   const user = await Auth.currentUserInfo();
-  console.log({ user });
   if (!user) {
-    dispatch({ type: 'loadTodos', payload: [] });
+    dispatch({ type: 'loadTodos', payload: { todos: [] } });
     return;
   }
 
@@ -112,7 +106,7 @@ export async function deleteTodo(dispatch, todo) {
     };
     const res = await API.del(apiName, path, options);
     console.log(res);
-    await loadTodos(dispatch);
+    await loadTodos(dispatch, '削除しました。');
   } catch (error) {
     console.error(error);
     dispatch({ type: 'error', payload: error });

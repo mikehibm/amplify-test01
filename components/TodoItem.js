@@ -3,21 +3,21 @@ import { updateTodo, deleteTodo } from '../services/todo-service';
 import { ConfirmDialog } from './ConfirmDialog';
 
 export const TodoItem = ({ item, dispatch }) => {
-  const [deleteConfirm, setDeleteCongirm] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   function handleCheck(e) {
     updateTodo(dispatch, { ...item, done: e.currentTarget.checked });
   }
 
   function handleDelete(e) {
-    setDeleteCongirm(true);
+    setShowDeleteConfirm(true);
   }
 
-  function handleDeleteCongirm(result) {
-    if (result) {
-      deleteTodo(dispatch, item);
-    }
-    setDeleteCongirm(false);
+  async function handleDeleteConfirm(result) {
+    setShowDeleteConfirm(false);
+    if (!result) return;
+
+    await deleteTodo(dispatch, item);
   }
 
   return (
@@ -26,9 +26,9 @@ export const TodoItem = ({ item, dispatch }) => {
       <span>{item.text}</span>
       <button onClick={handleDelete}>X</button>
       <ConfirmDialog
-        show={deleteConfirm}
+        show={showDeleteConfirm}
         message="削除しますか？"
-        onClick={handleDeleteCongirm}
+        onClick={handleDeleteConfirm}
       />
 
       <style jsx>{`

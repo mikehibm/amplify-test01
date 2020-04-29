@@ -21,6 +21,10 @@ export const MyLayout = ({ contentStyle = {}, children }) => {
       <Footer />
 
       <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
+
         html,
         body {
           margin: 0;
