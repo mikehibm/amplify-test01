@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 import { TodoInput } from './TodoInput';
 import { TodoItem } from './TodoItem';
 import { LoadingSpinner } from './LoadingSpinner';
-import { AlertDialog } from './AlertDialog';
+import { Notification } from './Notification';
 import { initialState, todoReducer } from '../services/todo-reducer';
 import { loadTodos } from '../services/todo-service';
 import { useAuthListner } from './UseAuthLisner';
@@ -33,7 +33,7 @@ export const TodoApp = () => {
         ))}
       </ul>
       <LoadingSpinner isLoading={loading} />
-      <AlertDialog
+      <Notification
         show={message}
         message={message}
         onClose={() => dispatch({ type: 'message', payload: null })}
